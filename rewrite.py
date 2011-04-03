@@ -10,6 +10,13 @@ def rewrite(axiom, rules):
         i += 1
     return axiom
 
+def koch_fractal(levels=2):
+    axiom = 'f'
+    production_rules = {'f': 'f+f--f+f'}
+    for i in range(levels):
+        axiom = rewrite(axiom, production_rules)
+    return axiom
+
 def test_rewrite():
     rules = {'a': 'ab',
              'b': 'c'}
