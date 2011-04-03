@@ -24,8 +24,8 @@ def rewrite_converge(axiom, rules):
     return axiom
 
 def koch_fractal(levels):
-    axiom = 'f'
-    production_rules = {'f': 'f+f--f+f'}
+    axiom = 'F'
+    production_rules = {'F': 'F+F--F+F'}
     return rewrite_iter(axiom, production_rules, levels)
 
 def lindenmayer_leaf(depth):
@@ -45,9 +45,9 @@ def test_rewrite():
     assert('ab'==rewrite('a', rules))
     assert('abc'==rewrite('ab', rules))
 
-    rules = {'f': 'f+f--f+f'}
-    s = rewrite_iter('f', rules, 2)
-    t = 'f+f--f+f+f+f--f+f--f+f--f+f+f+f--f+f'
+    rules = {'F': 'F+F--F+F'}
+    s = rewrite_iter('F', rules, 2)
+    t = 'F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F'
     assert(t==s)
 
     rules = {'a': 'bc', 'b':'ef', 'c':'gh'}
@@ -58,10 +58,10 @@ def test_lindenmayer():
     assert(s=='fDgRdRaDiDgRk')
 
 def test_koch():
-    k = 'f+f--f+f+f+f--f+f--f+f--f+f+f+f--f+f+f+f--'
-    k += 'f+f+f+f--f+f--f+f--f+f+f+f--f+f--f+f--f+f'
-    k += '+f+f--f+f--f+f--f+f+f+f--f+f+f+f--f+f+f+f'
-    k += '--f+f--f+f--f+f+f+f--f+f'
+    k = 'F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--'
+    k += 'F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F'
+    k += '+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F'
+    k += '--F+F--F+F--F+F+F+F--F+F'
     assert(k==koch_fractal(3))
 
 def run_tests():
