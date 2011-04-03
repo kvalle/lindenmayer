@@ -52,10 +52,23 @@ def test_rewrite():
 
     rules = {'a': 'bc', 'b':'ef', 'c':'gh'}
     assert('efgh'==rewrite_converge('a',rules))
-    print 'ok'
+
+def test_lindenmayer():
+    s = lindenmayer_leaf(4)
+    assert(s=='fDgRdRaDiDgRk')
+
+def test_koch():
+    k = 'f+f--f+f+f+f--f+f--f+f--f+f+f+f--f+f+f+f--'
+    k += 'f+f+f+f--f+f--f+f--f+f+f+f--f+f--f+f--f+f'
+    k += '+f+f--f+f--f+f--f+f+f+f--f+f+f+f--f+f+f+f'
+    k += '--f+f--f+f--f+f+f+f--f+f'
+    assert(k==koch_fractal(3))
 
 def run_tests():
     test_rewrite()
+    test_lindenmayer()
+    test_koch()
+    print 'ok'
 
 if __name__=="__main__":
     run_tests()
