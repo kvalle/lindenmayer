@@ -23,11 +23,22 @@ def rewrite_converge(axiom, rules):
         axiom = tmp
     return axiom
 
-def koch_fractal(levels=2):
+def koch_fractal(levels):
     axiom = 'f'
     production_rules = {'f': 'f+f--f+f'}
-    axiom = rewrite_iter(axiom, production_rules, levels)
-    return axiom
+    return rewrite_iter(axiom, production_rules, levels)
+
+def lindenmayer_leaf(depth):
+    """
+    Generator for Lindernmayer's moss leaf L-system. See example
+    in [1] on page 275.
+
+    [1] Floreano, D. and Mattiussi, C., 2008, Bio-inspired Artificial Intelligence
+    """
+    axiom = 'a'
+    rules = {'a':'cRb','e':'f','i':'j','m':'fDg','b':'aDi','f':'hRh',
+            'j':'gRk','c':'d','g':'g','k':'lDl','d':'eDg','h':'m','l':'j'}
+    return rewrite_iter(axiom, rules, depth)
 
 def test_rewrite():
     rules = {'a': 'ab', 'b': 'c'}
