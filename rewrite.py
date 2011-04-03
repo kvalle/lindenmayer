@@ -10,23 +10,37 @@ def rewrite(axiom, rules):
         i += 1
     return axiom
 
+def rewrite_iter(axiom, rules, iterations):
+    for i in range(iterations):
+        axiom = rewrite(axiom, rules)
+    return axiom
+
+def rewrite_converge(axiom, rules):
+    """Warning: Termination not guaranteed!"""
+    while True:
+        tmp = rewrite(axiom, rules)
+        if tmp==axiom: break
+        axiom = tmp
+    return axiom
+
 def koch_fractal(levels=2):
     axiom = 'f'
     production_rules = {'f': 'f+f--f+f'}
-    for i in range(levels):
-        axiom = rewrite(axiom, production_rules)
+    axiom = rewrite_iter(axiom, production_rules, levels)
     return axiom
 
 def test_rewrite():
-    rules = {'a': 'ab',
-             'b': 'c'}
+    rules = {'a': 'ab', 'b': 'c'}
     assert('ab'==rewrite('a', rules))
     assert('abc'==rewrite('ab', rules))
+
     rules = {'f': 'f+f--f+f'}
-    s = rewrite('f', rules)
-    s = rewrite(s, rules)
+    s = rewrite_iter('f', rules, 2)
     t = 'f+f--f+f+f+f--f+f--f+f--f+f+f+f--f+f'
     assert(t==s)
+
+    rules = {'a': 'bc', 'b':'ef', 'c':'gh'}
+    assert('efgh'==rewrite_converge('a',rules))
     print 'ok'
 
 def run_tests():
