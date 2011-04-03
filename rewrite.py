@@ -28,6 +28,11 @@ def koch_fractal(levels):
     production_rules = {'F': 'F+F--F+F'}
     return rewrite_iter(axiom, production_rules, levels)
 
+def quadratic_koch_fractal(levels):
+    axiom = 'F+F+F+F'
+    production_rules = {'F': 'F+F-F-FF+F+F-F'}
+    return rewrite_iter(axiom, production_rules, levels)
+
 def lindenmayer_leaf(depth):
     """
     Generator for Lindernmayer's moss leaf L-system. See example
