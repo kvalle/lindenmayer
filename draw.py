@@ -1,53 +1,50 @@
 import rewrite
 import turtle as t
 
-class Turtle():
+class KoopaTroopa(t.Turtle):
     def __init__(self, position=(0,0), heading=0, step=30, angle=60):
-        self.turtle = t.Turtle()
-        self.position = position
-        self.heading = heading
-        self.step = step
-        self.angle = angle
-        self.states = []
+        super(KoopaTroopa, self).__init__()
+        self._position = position
+        self._heading = heading
+        self._step = step
+        self._angle = angle
+        self._states = []
         self.setup()
 
-    def color(self, c):
-        self.turtle.color(c)
-
     def setup(self):
-        self.turtle.clear()
-        self.turtle.up()
-        self.turtle.goto(self.position)
-        self.turtle.right(self.heading)
-        self.turtle.down()
+        self.clear()
+        self.up()
+        self.goto(self._position)
+        self.right(self._heading)
+        self.down()
 
     def save_state(self):
-        p = self.turtle.position()
-        h = self.turtle.heading()
-        self.states.append((p,h))
+        p = self.position()
+        h = self.heading()
+        self._states.append((p,h))
 
     def restore_state(self):
-        if not self.states:
+        if not self._states:
             raise Exception('No states to restore from!')
-        p,h = self.states[-1]
-        self.turtle.up()
-        self.turtle.goto(p)
-        self.turtle.setheading(h)
-        self.turtle.down()
-        self.states = self.states[:-1]
+        p,h = self._states[-1]
+        self.up()
+        self.goto(p)
+        self.setheading(h)
+        self.down()
+        self._states = self._states[:-1]
 
     def draw(self, sequence):
         for s in sequence:
             if s is 'F':
-                self.turtle.forward(self.step)
+                self.forward(self._step)
             elif s is 'f':
-                self.turtle.up()
-                self.turtle.forward(self.step)
-                self.turtle.down()
+                self.up()
+                self.forward(self._step)
+                self.down()
             elif s is '+':
-                self.turtle.left(self.angle)
+                self.left(self._angle)
             elif s is '-':
-                self.turtle.right(self.angle)
+                self.right(self._angle)
             elif s is '[':
                 self.save_state()
             elif s  is ']':
@@ -58,14 +55,14 @@ class Turtle():
 def demo_koch(level = 3):
     fractal = rewrite.koch_fractal(level)
     step = 300/(3**level)
-    koopa = Turtle(position=(-200,0),step=step, angle=60)
+    koopa = KoopaTroopa(position=(-200,0),step=step, angle=60)
     koopa.draw(fractal)
     raw_input('Press return to end')
 
 def demo_quadratic_koch(level=2):
     fractal = rewrite.quadratic_koch_fractal(level)
     step = 100/(5*level+1)
-    koopa = Turtle(step=step, angle=90)
+    koopa = KoopaTroopa(step=step, angle=90)
     koopa.draw(fractal)
     raw_input('Press return to end')
 
@@ -74,7 +71,7 @@ def demo_tree():
     rules = {'F': 'F[+F]F[-F[+F][-F]]F'}
     tree = rewrite.rewrite_iter(axiom, rules, 3)
     t.bgcolor('black')
-    koopa = Turtle(position=(0,-250),step=12, angle=29, heading=270)
+    koopa = KoopaTroopa(position=(0,-250),step=12, angle=29, heading=270)
     koopa.color('green')
     koopa.draw(tree)
     raw_input('Press return to end')
@@ -85,7 +82,7 @@ def demo_triangles():
     tree = rewrite.rewrite_iter(axiom, rules, 4)
     tree = tree.replace('a','+')
     tree = tree.replace('b','+')
-    koopa = Turtle(position=(0,250),step=100, angle=120, heading=120)
+    koopa = KoopaTroopa(position=(0,250),step=100, angle=120, heading=120)
     koopa.draw(tree)
     raw_input('Press return to end')
 
