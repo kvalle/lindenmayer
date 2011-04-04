@@ -2,7 +2,7 @@
 #  Rewriting system
 ##
 
-def rewrite(axiom, rules):
+def rewrite_once(axiom, rules):
     i = 0
     while i < len(axiom):
         x = axiom[i]
@@ -14,17 +14,12 @@ def rewrite(axiom, rules):
         i += 1
     return axiom
 
-def rewrite_iter(axiom, rules, iterations):
-    for i in range(iterations):
-        axiom = rewrite(axiom, rules)
-    return axiom
-
-def rewrite_converge(axiom, rules, max_itr=None):
+def rewrite(axiom, rules, max_itr=None):
     """Warning: Termination not guaranteed!"""
     itr = 0
     while not max_itr or itr<max_itr:
         itr += 1
-        tmp = rewrite(axiom, rules)
+        tmp = rewrite_once(axiom, rules)
         if tmp==axiom: break
         axiom = tmp
     return axiom
@@ -36,12 +31,12 @@ def rewrite_converge(axiom, rules, max_itr=None):
 def koch_fractal(levels):
     axiom = 'F'
     production_rules = {'F': 'F+F--F+F'}
-    return rewrite_iter(axiom, production_rules, levels)
+    return rewrite(axiom, production_rules, levels)
 
 def quadratic_koch_fractal(levels):
     axiom = 'F+F+F+F'
     production_rules = {'F': 'F+F-F-FF+F+F-F'}
-    return rewrite_iter(axiom, production_rules, levels)
+    return rewrite(axiom, production_rules, levels)
 
 def lindenmayer_leaf(depth):
     """
@@ -53,7 +48,7 @@ def lindenmayer_leaf(depth):
     axiom = 'a'
     rules = {'a':'cRb','e':'f','i':'j','m':'fDg','b':'aDi','f':'hRh',
             'j':'gRk','c':'d','g':'g','k':'lDl','d':'eDg','h':'m','l':'j'}
-    return rewrite_iter(axiom, rules, depth)
+    return rewrite(axiom, rules, depth)
 
 ##
 #  Tests
@@ -61,19 +56,19 @@ def lindenmayer_leaf(depth):
 
 def test_rewrite():
     rules = {'a': 'ab', 'b': 'c'}
-    assert('ab'==rewrite('a', rules))
-    assert('abc'==rewrite('ab', rules))
+    assert('ab'==rewrite_once('a', rules))
+    assert('abc'==rewrite_once('ab', rules))
 
     rules = {'F': 'F+F--F+F'}
-    s = rewrite_iter('F', rules, 2)
+    s = rewrite('F', rules, 2)
     t = 'F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F'
     assert(t==s)
 
     rules = {'a': 'bc', 'b':'ef', 'c':'gh'}
-    assert('efgh'==rewrite_converge('a', rules))
+    assert('efgh'==rewrite('a', rules))
 
     rules = {'a': 'ab'}
-    assert('abbbb'==rewrite_converge('a', rules, max_itr=4))
+    assert('abbbb'==rewrite('a', rules, max_itr=4))
 
 def test_lindenmayer():
     s = lindenmayer_leaf(4)

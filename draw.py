@@ -65,7 +65,7 @@ def demo_quadratic_koch(level=2):
 def demo_tree():
     axiom = 'F'
     rules = {'F': 'F[+F]F[-F[+F][-F]]F'}
-    tree = rewrite.rewrite_iter(axiom, rules, 3)
+    tree = rewrite.rewrite(axiom, rules, 3)
     t.bgcolor('black')
     koopa = KoopaTroopa(position=(0,-250),step=12, angle=29, heading=270)
     koopa.color('green')
@@ -75,7 +75,7 @@ def demo_tree():
 def demo_triangles():
     axiom = 'l'
     rules = {'l': 'FlFrF-', 'r':'-FlFrF'}
-    tree = rewrite.rewrite_iter(axiom, rules, 4)
+    tree = rewrite.rewrite(axiom, rules, 4)
     tree = tree.replace('l','+')
     tree = tree.replace('r','+')
     koopa = KoopaTroopa(position=(0,250),step=100, angle=120, heading=120)
