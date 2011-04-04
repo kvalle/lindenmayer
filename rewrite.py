@@ -50,42 +50,5 @@ def lindenmayer_leaf(depth):
             'j':'gRk','c':'d','g':'g','k':'lDl','d':'eDg','h':'m','l':'j'}
     return rewrite(axiom, rules, depth)
 
-##
-#  Tests
-##
-
-def test_rewrite():
-    rules = {'a': 'ab', 'b': 'c'}
-    assert('ab'==rewrite_once('a', rules))
-    assert('abc'==rewrite_once('ab', rules))
-
-    rules = {'F': 'F+F--F+F'}
-    s = rewrite('F', rules, 2)
-    t = 'F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F'
-    assert(t==s)
-
-    rules = {'a': 'bc', 'b':'ef', 'c':'gh'}
-    assert('efgh'==rewrite('a', rules))
-
-    rules = {'a': 'ab'}
-    assert('abbbb'==rewrite('a', rules, max_itr=4))
-
-def test_lindenmayer():
-    s = lindenmayer_leaf(4)
-    assert(s=='fDgRdRaDiDgRk')
-
-def test_koch():
-    k = 'F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--'
-    k += 'F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F'
-    k += '+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F'
-    k += '--F+F--F+F--F+F+F+F--F+F'
-    assert(k==koch_fractal(3))
-
-def run_tests():
-    test_rewrite()
-    test_lindenmayer()
-    test_koch()
-    print 'ok'
-
 if __name__=="__main__":
-    run_tests()
+    pass
