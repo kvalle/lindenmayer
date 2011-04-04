@@ -11,6 +11,31 @@ class KoopaTroopa(t.Turtle):
         self.goto(position)
         self.right(heading)
         self.down()
+        self.commands = {
+                'draw':(self.forward, [self._step]),
+                'go':(self.forward_up, [self._step]),
+                'left':(self.left, [self._angle]),
+                'right':(self.right, [self._angle]),
+                'mark':(self.mark, []),
+                'recall':(self.recall, [])
+            }
+        self.set_mappings({'F':'draw','f':'go','+':'left',
+                            '-':'right','[':'mark',']':'recall'})
+
+    def _check_mappings(self, mappings):
+        for cmd in mappings.values():
+            if cmd not in self.commands.keys():
+                error = "Cannot add mapping to non-existing command '"+cmd+"'!\n"
+                error += "Available commands are: "+str(self.commands.keys())
+                raise Exception(error)
+
+    def add_mappings(self, mappings):
+        self._check_mappings(mappings)
+        self.mapping.update(mappings)
+
+    def set_mappings(self, mappings):
+        self._check_mappings(mappings)
+        self.mapping = mappings
 
     def mark(self):
         p = self.position()
@@ -33,17 +58,10 @@ class KoopaTroopa(t.Turtle):
         self.down()
 
     def draw(self, sequence):
-        mapping = {
-                'F':(self.forward, [self._step]),
-                'f':(self.forward_up, [self._step]),
-                '+':(self.left, [self._angle]),
-                '-':(self.right, [self._angle]),
-                '[':(self.mark, []),
-                ']':(self.recall, [])
-            }
         for s in sequence:
-            if s in mapping.keys():
-                fun, args = mapping[s]
+            if s in self.mapping.keys():
+                cmd = self.mapping[s]
+                fun, args = self.commands[cmd]
                 fun(*args)
             else:
                 print "Symbol '"+ s +"' ignored because it was not recognized by the turtle!"
@@ -76,14 +94,15 @@ def demo_triangles():
     axiom = 'l'
     rules = {'l': 'FlFrF-', 'r':'-FlFrF'}
     tree = rewrite.rewrite(axiom, rules, 4)
-    tree = tree.replace('l','+')
-    tree = tree.replace('r','+')
+    t.bgcolor('black')
     koopa = KoopaTroopa(position=(0,250),step=100, angle=120, heading=120)
+    koopa.add_mappings({'l':'left', 'r':'left'})
+    koopa.color('red')
     koopa.draw(tree)
     raw_input('Press return to end')
 
 if __name__=="__main__":
     #~ demo_koch()
     #~ demo_quadratic_koch()
-    demo_tree()
-    #~ demo_triangles()
+    #~ demo_tree()
+    demo_triangles()
