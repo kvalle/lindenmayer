@@ -1,3 +1,7 @@
+##
+#  Rewriting system
+##
+
 def rewrite(axiom, rules):
     i = 0
     while i < len(axiom):
@@ -15,13 +19,19 @@ def rewrite_iter(axiom, rules, iterations):
         axiom = rewrite(axiom, rules)
     return axiom
 
-def rewrite_converge(axiom, rules):
+def rewrite_converge(axiom, rules, max_itr=None):
     """Warning: Termination not guaranteed!"""
-    while True:
+    itr = 0
+    while not max_itr or itr<max_itr:
+        itr += 1
         tmp = rewrite(axiom, rules)
         if tmp==axiom: break
         axiom = tmp
     return axiom
+
+##
+#  Generators
+##
 
 def koch_fractal(levels):
     axiom = 'F'
@@ -45,6 +55,10 @@ def lindenmayer_leaf(depth):
             'j':'gRk','c':'d','g':'g','k':'lDl','d':'eDg','h':'m','l':'j'}
     return rewrite_iter(axiom, rules, depth)
 
+##
+#  Tests
+##
+
 def test_rewrite():
     rules = {'a': 'ab', 'b': 'c'}
     assert('ab'==rewrite('a', rules))
@@ -56,7 +70,10 @@ def test_rewrite():
     assert(t==s)
 
     rules = {'a': 'bc', 'b':'ef', 'c':'gh'}
-    assert('efgh'==rewrite_converge('a',rules))
+    assert('efgh'==rewrite_converge('a', rules))
+
+    rules = {'a': 'ab'}
+    assert('abbbb'==rewrite_converge('a', rules, max_itr=4))
 
 def test_lindenmayer():
     s = lindenmayer_leaf(4)
