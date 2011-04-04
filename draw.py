@@ -12,13 +12,13 @@ class KoopaTroopa(t.Turtle):
         self.right(heading)
         self.down()
         self.commands = {
-                'draw':(self.forward, [self._step]),
-                'go':(self.forward_up, [self._step]),
-                'left':(self.left, [self._angle]),
-                'right':(self.right, [self._angle]),
-                'mark':(self.mark, []),
-                'recall':(self.recall, [])
-            }
+            'draw':(self.forward, [self._step]),
+            'go':(self.forward_up, [self._step]),
+            'left':(self.left, [self._angle]),
+            'right':(self.right, [self._angle]),
+            'mark':(self.mark, []),
+            'recall':(self.recall, [])
+        }
         self.set_mappings({'F':'draw','f':'go','+':'left',
                             '-':'right','[':'mark',']':'recall'})
 
@@ -66,6 +66,10 @@ class KoopaTroopa(t.Turtle):
             else:
                 print "Symbol '"+ s +"' ignored because it was not recognized by the turtle!"
 
+##
+#  Demo functions
+##
+
 def demo_koch(level = 3):
     fractal = rewrite.koch_fractal(level)
     step = 300/(3**level)
@@ -104,5 +108,5 @@ def demo_triangles():
 if __name__=="__main__":
     #~ demo_koch()
     #~ demo_quadratic_koch()
-    #~ demo_tree()
-    demo_triangles()
+    demo_tree()
+    #~ demo_triangles()
