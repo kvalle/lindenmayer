@@ -2,20 +2,14 @@ import rewrite
 import turtle as t
 
 class KoopaTroopa(t.Turtle):
-    def __init__(self, position=(0,0), heading=0, step=30, angle=60):
+    def __init__(self, step=30, angle=60, position=(0,0), heading=0):
         super(KoopaTroopa, self).__init__()
-        self._position = position
-        self._heading = heading
         self._step = step
         self._angle = angle
         self._states = []
-        self.setup()
-
-    def setup(self):
-        self.clear()
         self.up()
-        self.goto(self._position)
-        self.right(self._heading)
+        self.goto(position)
+        self.right(heading)
         self.down()
 
     def save_state(self):
