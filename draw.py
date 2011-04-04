@@ -105,8 +105,22 @@ def demo_triangles():
     koopa.draw(tree)
     raw_input('Press return to end')
 
+def demo_sierpinski():
+    axiom = 'a'
+    rules = {'a': 'b-a-b', 'b':'a+b+a'}
+    path = rewrite.rewrite(axiom, rules, 6)
+    t.bgcolor('black')
+    koopa = KoopaTroopa(position=(-200,-200),step=7, angle=60)
+    koopa.add_mappings({'a':'draw', 'b':'draw'})
+    koopa.color('green')
+    koopa.width(2)
+    koopa.speed(10)
+    koopa.draw(path)
+    raw_input('Press return to end')
+
 if __name__=="__main__":
     #~ demo_koch()
     #~ demo_quadratic_koch()
-    demo_tree()
+    #~ demo_tree()
     #~ demo_triangles()
+    demo_sierpinski()
