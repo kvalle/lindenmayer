@@ -50,7 +50,7 @@ class Turtle():
             elif s  is ']':
                 self.restore_state()
             else:
-                print "Symbol '"+ s +"' ignored because it was not recognized by the turtle!'"
+                print "Symbol '"+ s +"' ignored because it was not recognized by the turtle!"
 
 def demo_koch(level = 3):
     fractal = rewrite.koch_fractal(level)
@@ -74,7 +74,20 @@ def demo_tree():
     koopa.draw(tree)
     raw_input('Press return to end')
 
+def demo_triangles():
+    axiom = 'a'
+    rules = {'a': 'FaFbF-', 'b':'-FaFbF'}
+    tree = rewrite.rewrite_iter(axiom, rules, 4)
+    tree = tree.replace('a','+')
+    tree = tree.replace('b','+')
+    print tree
+    koopa = Turtle(position=(0,250),step=100, angle=120, heading=120)
+    koopa.turtle.speed(1)
+    koopa.draw(tree)
+    raw_input('Press return to end')
+
 if __name__=="__main__":
     #~ demo_koch()
     #~ demo_quadratic_koch()
-    demo_tree()
+    #~ demo_tree()
+    demo_triangles()
