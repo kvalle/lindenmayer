@@ -91,6 +91,19 @@ def demo_tree():
     t.bgcolor('black')
     koopa = KoopaTroopa(position=(0,-250),step=12, angle=29, heading=270)
     koopa.color('green')
+    koopa.width(2)
+    koopa.draw(tree)
+    raw_input('Press return to end')
+
+def demo_tree2():
+    axiom = 'F'
+    rules = {'F': 'F[-FF]F[+F[-F]F]F'}
+    tree = rewrite.rewrite(axiom, rules, 3)
+    t.bgcolor('black')
+    koopa = KoopaTroopa(position=(0,-250),step=10, angle=29, heading=270)
+    koopa.speed(8)
+    koopa.color('green')
+    koopa.width(2)
     koopa.draw(tree)
     raw_input('Press return to end')
 
@@ -122,5 +135,6 @@ if __name__=="__main__":
     #~ demo_koch()
     #~ demo_quadratic_koch()
     #~ demo_tree()
+    demo_tree2()
     #~ demo_triangles()
-    demo_sierpinski()
+    #~ demo_sierpinski()
