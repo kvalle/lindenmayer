@@ -132,14 +132,12 @@ def demo_sierpinski():
     raw_input('Press return to end')
 
 def demo_shrooms():
-    axiom = 'a-b'
-    rules = {'a': 'b+a-b', 'b':'a-b+a'}
-    path = rewrite.rewrite(axiom, rules, 6)
+    path = rewrite.shroom_fractal(6)
     t.bgcolor('black')
     t.setup(width=1000)
-    koopa = KoopaTroopa(position=(-350,-150), heading=330, step=3, angle=60)
+    koopa = KoopaTroopa(position=(-360,-150), heading=330, step=3, angle=60)
     koopa.add_mappings({'a':'draw', 'b':'draw'})
-    koopa.color('green')
+    koopa.color('yellow')
     koopa.speed(10)
     koopa.draw(path)
     koopa.hideturtle()

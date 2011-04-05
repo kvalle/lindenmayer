@@ -50,5 +50,10 @@ def lindenmayer_leaf(depth):
             'j':'gRk','c':'d','g':'g','k':'lDl','d':'eDg','h':'m','l':'j'}
     return rewrite(axiom, rules, depth)
 
+def shroom_fractal(levels):
+    axiom = 'a-b'
+    rules = {'a': 'b+a-b', 'b':'a-b+a'}
+    return rewrite(axiom, rules, levels)
+
 if __name__=="__main__":
     pass
