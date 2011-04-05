@@ -17,6 +17,15 @@ class GeneratorTests(unittest.TestCase):
         f = 'F+F-F-FF+F+F-F+F+F-F-FF+F+F-F+F+F-F-FF+F+F-F+F+F-F-FF+F+F-F'
         self.assertEqual(f,rw.quadratic_koch_fractal(1))
 
+    def test_hilbert_fractal(self):
+        f = '+-aF+bFb+Fa-F-+bF-aFa-Fb+F+bF-aFa-Fb+-F-aF+bFb+Fa-+'
+        self.assertEqual(f,rw.hilbert_fractal(2))
+
+    def test_shroom_fractal(self):
+        f = 'a-b+a+b+a-b-a-b+a-b+a-b-a-b+a+b+a-b'
+        self.assertEqual(f,rw.shroom_fractal(2))
+
+
 class RewriteTests(unittest.TestCase):
     def test_rewrite_once(self):
         rules = {'a': 'ab', 'b': 'c'}

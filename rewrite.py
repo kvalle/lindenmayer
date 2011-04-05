@@ -55,5 +55,11 @@ def shroom_fractal(levels):
     rules = {'a': 'b+a-b', 'b':'a-b+a'}
     return rewrite(axiom, rules, levels)
 
+def hilbert_fractal(levels):
+    axiom = 'a'
+    rules = {'a': '+bF-aFa-Fb+',
+             'b': '-aF+bFb+Fa-'}
+    return rewrite(axiom, rules, levels)
+
 if __name__=="__main__":
     pass
