@@ -131,10 +131,25 @@ def demo_sierpinski():
     koopa.draw(path)
     raw_input('Press return to end')
 
+def demo_shrooms():
+    axiom = 'a-b'
+    rules = {'a': 'b+a-b', 'b':'a-b+a'}
+    path = rewrite.rewrite(axiom, rules, 6)
+    t.bgcolor('black')
+    t.setup(width=1000)
+    koopa = KoopaTroopa(position=(-350,-150), heading=330, step=3, angle=60)
+    koopa.add_mappings({'a':'draw', 'b':'draw'})
+    koopa.color('green')
+    koopa.speed(10)
+    koopa.draw(path)
+    koopa.hideturtle()
+    raw_input('Press return to end')
+
 if __name__=="__main__":
     #~ demo_koch()
     #~ demo_quadratic_koch()
     #~ demo_tree()
-    demo_tree2()
+    #~ demo_tree2()
     #~ demo_triangles()
     #~ demo_sierpinski()
+    demo_shrooms()
