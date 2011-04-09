@@ -46,5 +46,9 @@ class RewriteTests(unittest.TestCase):
         rules = {'a': 'ab'}
         self.assertEqual('abbbb',rw.rewrite('a', rules, max_itr=4))
 
+    def test_zero_iterations(self):
+        rules = {'a': 'b'}
+        self.assertEqual('a',rw.rewrite('a', rules, max_itr=-0))
+
 if __name__ == "__main__":
     unittest.main()
