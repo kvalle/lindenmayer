@@ -17,7 +17,7 @@ For example:
     A = {a, b, +, -}
     ω = a-b
     π = {a → b+a-b, b → a-b+a}
-    
+
 should produce the following results
 
     0: a-b
@@ -36,7 +36,7 @@ A few additional commands such as moving without drawing and saving and restorin
 
 The result of six iterations of the above example as drawn by the turtle, with both `a` and `b` corresponding to *draw forward*, and `+` and `-` meaning *turn left* and *turn right*, respectively:
 
-![Image of example fractal](https://github.com/kvalle/turtle/raw/master/imgs/example.png)
+![Image of example fractal](https://github.com/kvalle/lindenmayer/raw/master/imgs/example.png)
 
 ---
 
