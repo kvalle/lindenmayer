@@ -17,7 +17,7 @@ def rewrite_once(axiom, rules):
 def rewrite(axiom, rules, max_itr=None):
     """Warning: Termination not guaranteed!"""
     itr = 0
-    while not max_itr or itr<max_itr:
+    while max_itr is None or itr<max_itr:
         itr += 1
         tmp = rewrite_once(axiom, rules)
         if tmp==axiom: break
