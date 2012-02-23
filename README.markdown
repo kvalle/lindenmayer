@@ -2,7 +2,7 @@ Fun With L-systems and Turtle Graphics
 ======================================
 
 A simple implementation of a Lindenmayer system for playing around with rewriting rules, turtle graphics and fractals.
-Most of the code is inspired by Chapter 4 of Bio-Inspired Artificial Intelligence by D. Florreano and C. Mattiussi.
+Most of the code is inspired by Chapter 4 of [Bio-Inspired Artificial Intelligence](http://baibook.epfl.ch/) by D. Florreano and C. Mattiussi.
 
 Lindenmayer Systems
 -------------------
