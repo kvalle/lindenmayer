@@ -1,5 +1,5 @@
 ##
-#  Turtle graphics drawer intended for visualizing L-systems.
+#  Simplified interface for Python's turtle graphics intended for visualizing L-systems.
 ##
 
 import rewrite
