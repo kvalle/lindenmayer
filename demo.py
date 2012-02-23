@@ -73,7 +73,7 @@ if __name__=='__main__':
         print "LEVEL\tSpecify number of iterations for rewrite-engine"
         sys.exit()
     
-    def get_level(arg):
+    def parse_level(arg):
         try:
             level = int(arg)
             assert level > 0
@@ -82,7 +82,7 @@ if __name__=='__main__':
             print "! LEVEL must be positive integer"
             sys.exit() 
             
-    def get_demo(arg):
+    def parse_demo(arg):
         demos = Demo.list_demos()
         if arg not in demos:
             print "! DEMO must be one of {" + ", ".join(demos)+"}"
@@ -91,6 +91,6 @@ if __name__=='__main__':
         
     if len(sys.argv) == 1:
         print_usage_and_die()
-    demo = get_demo(sys.argv[1])
-    level = get_level(sys.argv[2]) if len(sys.argv) > 2 else None
+    demo = parse_demo(sys.argv[1])
+    level = parse_level(sys.argv[2]) if len(sys.argv) > 2 else None
     Demo(demo, level)
