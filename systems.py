@@ -36,3 +36,25 @@ def hilbert_fractal(levels):
     rules = {'a': '+bF-aFa-Fb+',
              'b': '-aF+bFb+Fa-'}
     return rewrite(axiom, rules, levels)
+
+def tree(levels):
+    axiom = 'F'
+    rules = {'F': 'F[+F]F[-F[+F][-F]]F'}
+    return rewrite(axiom, rules, levels)
+    
+def tree2(levels):
+    axiom = 'F'
+    rules = {'F': 'F[-FF]F[+F[-F]F]F'}
+    return rewrite(axiom, rules, levels)
+
+def triangles(levels):
+    axiom = 'l'
+    rules = {'l': 'FlFrF-', 'r':'-FlFrF'}
+    return rewrite(axiom, rules, levels)
+    
+def sierpinski(levels):
+    axiom = 'a'
+    rules = {'a': 'b-a-b', 'b':'a+b+a'}
+    return rewrite(axiom, rules, levels)
+    
+
