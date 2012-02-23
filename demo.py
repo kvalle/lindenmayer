@@ -5,13 +5,8 @@ import systems
 
 class Demo:
 
-    def __init__(self):
+    def __init__(self, demo, levels):
         turtle.bgcolor('black')
-
-    def _list_demos(self):
-        return [method for method in dir(self) if not method[0]=="_"]
-        
-    def _draw(self, demo, levels):
         fun = getattr(self,demo)
         koopa, path = fun(levels) if levels else fun()
         koopa.width(2)
@@ -20,6 +15,10 @@ class Demo:
         koopa.draw(path)
         raw_input()
 
+    @staticmethod
+    def _list_demos():
+        return [method for method in dir(Demo) if not method[0]=="_"]
+        
     def koch(self, levels = 3):
         path = systems.koch_fractal(levels)
         koopa = draw.KoopaTroopa(position=(-200,0), step=300/(3**levels), angle=60)
@@ -66,7 +65,7 @@ if __name__=='__main__':
         print "Usage:"
         print "  python demo.py DEMO [LEVEL]"
         print
-        print "DEMO\t{" + ", ".join(Demo()._list_demos())+"}"
+        print "DEMO\t{" + ", ".join(Demo._list_demos())+"}"
         print "LEVEL\tSpecify number of iterations for rewrite-engine"
         sys.exit()
     
@@ -81,6 +80,9 @@ if __name__=='__main__':
         
     if len(sys.argv) == 1:
         print_usage_and_die()
+    demo = sys.argv[1]
     level = level(sys.argv[2]) if len(sys.argv) > 2 else None
-    Demo()._draw(sys.argv[1], level)
-    
+    try:
+        Demo(demo, level)
+    except AttributeError:
+        print "! DEMO must be one of {" + ", ".join(Demo._list_demos())+"}"
