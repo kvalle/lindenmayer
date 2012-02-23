@@ -1,5 +1,5 @@
 ##
-#  Rewriting system
+#  Rewriting-engine for L-systems.
 ##
 
 def rewrite_once(axiom, rules):

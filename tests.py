@@ -1,3 +1,7 @@
+##
+#  Unit tests for the L-systems and the rewrite-engine.
+##
+
 import unittest
 import rewrite as rw
 

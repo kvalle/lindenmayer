@@ -1,3 +1,7 @@
+##
+#  Turtle graphics drawer intended for visualizing L-systems.
+##
+
 import rewrite
 import turtle as t
 
