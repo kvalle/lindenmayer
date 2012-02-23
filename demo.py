@@ -17,7 +17,7 @@ class Demo:
 
     def koch(self, levels = 3):
         self.path = systems.koch_fractal(levels)
-        self.koopa = draw.KoopaTroopa(position=(-200,0),step=300/(3**level), angle=60)
+        self.koopa = draw.KoopaTroopa(position=(-200,0), step=300/(3**level), angle=60)
         self._draw()
 
     def koch_quad(self, levels=2):
@@ -27,29 +27,29 @@ class Demo:
 
     def tree(self, levels=3):
         self.path = systems.tree(levels)
-        self.koopa = draw.KoopaTroopa(position=(0,-250),step=12, angle=29, heading=270)
+        self.koopa = draw.KoopaTroopa(position=(0,-250), step=12, angle=29, heading=270)
         self._draw()
 
     def tree2(self, levels=3):
         self.path = systems.tree2(levels)
-        self.koopa = draw.KoopaTroopa(position=(0,-250),step=10, angle=29, heading=270)
+        self.koopa = draw.KoopaTroopa(position=(0,-250), step=10, angle=29, heading=270)
         self._draw()
 
     def triangles(self, levels=4):
         self.path = systems.triangles(levels)
-        self.koopa = draw.KoopaTroopa(position=(0,250),step=100, angle=120, heading=120)
+        self.koopa = draw.KoopaTroopa(position=(0,250), step=100, angle=120, heading=120)
         self.koopa.add_mappings({'l':'left', 'r':'left'})
         self._draw()
 
     def sierpinski(self, levels=6):
         self.path = systems.sierpinski(levels)
-        self.koopa = draw.KoopaTroopa(position=(-200,-200),step=7, angle=60)
+        self.koopa = draw.KoopaTroopa(position=(-200,-200), step=7)
         self.koopa.add_mappings({'a':'draw', 'b':'draw'})
         self._draw()
 
     def shrooms(self, levels=6):
         self.path = systems.shroom_fractal(levels)
-        self.koopa = draw.KoopaTroopa(position=(-360,-150), heading=330, step=3, angle=60)
+        self.koopa = draw.KoopaTroopa(position=(-360,-150), step=3, heading=330)
         self.koopa.add_mappings({'a':'draw', 'b':'draw'})
         self.koopa.hideturtle()
         self._draw()

@@ -6,11 +6,11 @@ import rewrite
 import turtle as t
 
 class KoopaTroopa(t.Turtle):
-    def __init__(self, step=30, angle=60, position=(0,0), heading=0):
+    def __init__(self, angle=60, step=10, position=(0,0), heading=0):
         super(KoopaTroopa, self).__init__()
-        self._step = step
         self._angle = angle
         self._states = []
+        self._step = step
         self.up()
         self.goto(position)
         self.right(heading)
