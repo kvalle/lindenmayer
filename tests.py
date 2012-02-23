@@ -4,30 +4,31 @@
 
 import unittest
 import rewrite as rw
+import systems
 
-class GeneratorTests(unittest.TestCase):
-    def test_lindenmayer(self):
-        s = rw.lindenmayer_leaf(4)
-        self.assertEqual(s,'fDgRdRaDiDgRk')
+class SystemsTests(unittest.TestCase):
+    def test_lindenmayer_leaf(self):
+        s = 'fDgRdRaDiDgRk'
+        self.assertEqual(s, systems.lindenmayer_leaf(4))
 
     def test_koch(self):
         k = 'F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--'
         k += 'F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F'
         k += '+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F'
         k += '--F+F--F+F--F+F+F+F--F+F'
-        self.assertEqual(k,rw.koch_fractal(3))
+        self.assertEqual(k,systems.koch_fractal(3))
 
     def test_quadratic_koch_fractal(self):
         f = 'F+F-F-FF+F+F-F+F+F-F-FF+F+F-F+F+F-F-FF+F+F-F+F+F-F-FF+F+F-F'
-        self.assertEqual(f,rw.quadratic_koch_fractal(1))
+        self.assertEqual(f,systems.quadratic_koch_fractal(1))
 
     def test_hilbert_fractal(self):
         f = '+-aF+bFb+Fa-F-+bF-aFa-Fb+F+bF-aFa-Fb+-F-aF+bFb+Fa-+'
-        self.assertEqual(f,rw.hilbert_fractal(2))
+        self.assertEqual(f,systems.hilbert_fractal(2))
 
     def test_shroom_fractal(self):
         f = 'a-b+a+b+a-b-a-b+a-b+a-b-a-b+a+b+a-b'
-        self.assertEqual(f,rw.shroom_fractal(2))
+        self.assertEqual(f,systems.shroom_fractal(2))
 
 
 class RewriteTests(unittest.TestCase):
