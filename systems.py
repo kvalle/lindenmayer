@@ -22,8 +22,8 @@ def lindenmayer_leaf(depth):
     [1] Floreano, D. and Mattiussi, C., 2008, Bio-inspired Artificial Intelligence
     """
     axiom = 'a'
-    rules = {'a':'cRb','e':'f','i':'j','m':'fDg','b':'aDi','f':'hRh',
-            'j':'gRk','c':'d','g':'g','k':'lDl','d':'eDg','h':'m','l':'j'}
+    rules = {'a':'cRb', 'e':'f', 'i':'j', 'm':'fDg', 'b':'aDi', 'f':'hRh',
+            'j':'gRk', 'c':'d' ,'g':'g' ,'k':'lDl' ,'d':'eDg' ,'h':'m' ,'l':'j'}
     return rewrite(axiom, rules, depth)
 
 def shroom_fractal(levels):
